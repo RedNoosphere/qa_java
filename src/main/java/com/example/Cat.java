@@ -3,11 +3,13 @@ package com.example;
 import java.util.List;
 
 public class Cat {
+    private final Predator predator;
 
-    Predator predator;
-
-    public Cat(Feline feline) {
-        this.predator = feline;
+    public Cat(Predator predator) {
+        if (predator == null) {
+            throw new NullPointerException("Predator cannot be null");
+        }
+        this.predator = predator;
     }
 
     public String getSound() {
@@ -17,5 +19,4 @@ public class Cat {
     public List<String> getFood() throws Exception {
         return predator.eatMeat();
     }
-
 }
