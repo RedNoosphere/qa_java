@@ -3,29 +3,29 @@ package com.example;
 import java.util.List;
 
 public class Lion {
-    private final Predator predator;
+    private final Feline feline;  // Зависимость на конкретный класс Feline
     private final String sex;
 
-    public Lion(Predator predator, String sex) {
-        if (predator == null) {
-            throw new NullPointerException("Predator cannot be null");
+    public Lion(Feline feline, String sex) {
+        if (feline == null) {
+            throw new NullPointerException("Feline cannot be null");
         }
         if (sex == null) {
             throw new NullPointerException("Sex cannot be null");
         }
         if (!"Самец".equals(sex) && !"Самка".equals(sex)) {
-            throw new IllegalArgumentException("Используйте допустимые значения пола животного - Самец или Самка");
+            throw new IllegalArgumentException("Используйте допустимые значения пола животного - Самец или самка");
         }
-        this.predator = predator;
+        this.feline = feline;
         this.sex = sex;
     }
 
     public List<String> getFood() throws Exception {
-        return predator.eatMeat();
+        return feline.eatMeat();  // Прямой вызов метода Feline
     }
 
     public int getKittens() {
-        return 1;
+        return feline.getKittens();  // Делегируем Feline (если у него есть такой метод)
     }
 
     public boolean hasMane() {

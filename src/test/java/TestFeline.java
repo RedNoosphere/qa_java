@@ -9,7 +9,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class FelineTest {
     private final Feline feline = new Feline();
 
-    // ========== Тесты для eatMeat() ==========
+    @Test
+    void getFamilyReturnsFelineFamily() {
+        assertEquals("Кошачьи", feline.getFamily());
+    }
+
     @Test
     void eatMeatReturnsPredatorFood() throws Exception {
         List<String> expected = List.of("Животные", "Птицы", "Рыба");
@@ -24,7 +28,6 @@ class FelineTest {
                 exception.getMessage());
     }
 
-    // ========== Тесты для getKittens() ==========
     @Test
     void getKittensWithoutParamReturnsOne() {
         assertEquals(1, feline.getKittens());
@@ -36,9 +39,13 @@ class FelineTest {
         assertEquals(kittensCount, feline.getKittens(kittensCount));
     }
 
-    // ========== Проверка реализации интерфейса ==========
     @Test
     void shouldImplementPredatorInterface() {
         assertTrue(feline instanceof Predator);
+    }
+
+    @Test
+    void shouldAlsoImplementAnimalInterface() {
+        assertTrue(feline instanceof Animal);
     }
 }
